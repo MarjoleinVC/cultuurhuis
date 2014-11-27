@@ -30,16 +30,10 @@ import be.vdab.entities.Klant;
 public class ReserverenBevestigenServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String VIEW = "WEB-INF/JSP/reserverenBevestigen.jsp";
-	private static final String REDIRECT_URL = "/reserverenBevestigen.htm";
 	private final transient GenresDAO genresDAO = new GenresDAO();
 	private final transient KlantDAO klantDAO = new KlantDAO();
 	private final transient ReserverenBevestigenDAO reserverenBevestigenDAO = new ReserverenBevestigenDAO();
 	private final transient VoorstellingenDAO voorstellingenDAO = new VoorstellingenDAO();
-
-	/*
-	 * TODO opzoeken van gebruikersnaam leidt tot fout in SQL Column
-	 * "gebruikersnaam"
-	 */
 
 	@Resource(name = VoorstellingenDAO.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
@@ -64,11 +58,18 @@ public class ReserverenBevestigenServlet extends HttpServlet {
 		Klant klant = klantDAO.findKlant(gebruikersnaam, paswoord);
 		if (klant == null) {
 			request.setAttribute("fout", "Verkeerde gebruikersnaam of paswoord");
-			request.getRequestDispatcher(VIEW).forward(request, response);
 		} else {
-			session.setAttribute("klant", klant);
-			response.sendRedirect(response.encodeURL(request.getContextPath()
-					+ REDIRECT_URL));
+			/*
+			 * TODO als session.setAttribute("klant", klant) wordt in jsp
+			 * "Bevestigen" niet beschikbaar als request.setAttribute("klant",
+			 * klant) wordt klant niet onthouden om te gebruiken in
+			 * OverzichtReserveringenServlet 
+			 * session.setAttribute("klant", klant);
+			 */
+			session.setAttribute("klantId", klant.getKlantId());
+			request.setAttribute("klant", klant);
+			request.getRequestDispatcher(VIEW).forward(request, response);
 		}
+		request.getRequestDispatcher(VIEW).forward(request, response);
 	}
 }

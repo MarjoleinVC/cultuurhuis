@@ -44,7 +44,7 @@
 		<tbody class="zebra">
 			<c:forEach var="gelukteReserveringen" items="${gelukteReserveringen}">
 				<tr>
-					<td><fmt:formatDate value="${voorstelling.datum}"
+					<td><fmt:formatDate value="${gelukteReserveringen.voorstelling.datum}"
 							pattern="dd/MM/yyyy HH:mm" /></td>
 					<td>${gelukteReserveringen.voorstelling.titel}</td>
 					<td>${gelukteReserveringen.voorstelling.uitvoerders}</td>
@@ -52,7 +52,7 @@
 					<td><fmt:formatNumber
 							value="${gelukteReserveringen.voorstelling.prijs}"
 							minFractionDigits="2" /></td>
-					<td>${gelukteReserveringen.voorstelling.aantalTeReserveren}</td>
+					<td>${gelukteReserveringen.aantalPlaatsen}</td>
 				</tr>
 			</c:forEach>
 		</tbody>
@@ -81,7 +81,7 @@
 					<!-- bij gebruik van currencySymbol in fmt:formatNumeber staat het €-teken achter de prijs! -->
 					<td><fmt:formatNumber value="${voorstelling.prijs}"
 							minFractionDigits="2" /></td>
-					<td>${mislukteReserveringen.voorstelling.aantalTeReserveren}</td>
+					<td>${mislukteReserveringen.aantalPlaatsen}</td>
 					<td>${mislukteReserveringen.voorstelling.vrijeplaatsen}"</td>
 				</tr>
 			</c:forEach>

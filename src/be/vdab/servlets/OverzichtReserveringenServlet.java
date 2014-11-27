@@ -3,7 +3,7 @@ package be.vdab.servlets;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -16,13 +16,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import javax.sql.DataSource;
 
+import be.vdab.dao.DAOException;
 import be.vdab.dao.GenresDAO;
 import be.vdab.dao.KlantDAO;
 import be.vdab.dao.ReserverenBevestigenDAO;
 import be.vdab.dao.VoorstellingenDAO;
-import be.vdab.entities.Klant;
 import be.vdab.entities.Reserveringen;
-import be.vdab.entities.Voorstelling;
 
 @WebServlet(name = "OverzichtReserveringen", urlPatterns = { "/overzichtReserveringen.htm" })
 /*
@@ -47,38 +46,35 @@ public class OverzichtReserveringenServlet extends HttpServlet {
 		reserverenBevestigenDAO.setDataSource(dataSource);
 	}
 
+	@SuppressWarnings("unchecked")
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
-		@SuppressWarnings("unchecked")
-		HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
+		LinkedHashMap<Long, Long> reservatiemandje = (LinkedHashMap<Long, Long>) session
 				.getAttribute("reservatiemandje");
 		List<Reserveringen> afgehandeldeReserveringen = new ArrayList<>();
 		List<Reserveringen> mislukteReserveringen = new ArrayList<>();
 		List<Reserveringen> gelukteReserveringen = new ArrayList<>();
-		Klant klant = (Klant) session.getAttribute("klant");
+		Long klantId = (Long) session.getAttribute("klantId");
 		for (Entry<Long, Long> entry : reservatiemandje.entrySet()) {
-			Voorstelling voorstelling = new Voorstelling(entry.getKey()
-					.longValue());
-			Reserveringen reservering = new Reserveringen(voorstelling,
-					entry.getValue());
-			/*
-			 * TODO melding van unhandled SQLException, maar throwen van
-			 * SQLException in Try-Catch lost niets op, want dan opnieuw melding
-			 * van unhandled SQLException.
-			 */
+			long voorstellingId = entry.getKey();
+			long aantalPlaatsen = entry.getValue();
+			Reserveringen afTeHandelenReservatiemandje = new Reserveringen(
+					voorstellingenDAO.findByPK(voorstellingId), aantalPlaatsen);
 			Reserveringen afgehandeldeReservering = null;
 			try {
+				/* TODO klant.getKlantId() veroorzaakt NullPointerException */
 				afgehandeldeReservering = reserverenBevestigenDAO
-						.confirmReserveringen(reservering, klant.getKlantId());
+						.confirmReserveringen(afTeHandelenReservatiemandje,
+								klantId);
 			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
+				throw new DAOException(
+						"Problemen met toevoegen van de reservatie in de database");
 			}
 			afgehandeldeReserveringen.add(afgehandeldeReservering);
 		}
 		for (Reserveringen reservering : afgehandeldeReserveringen) {
-			if (reservering.isSuccesReservering()) {
+			if (reservering.isSuccesReservering() == true) {
 				gelukteReserveringen.add(reservering);
 				request.setAttribute("gelukteReserveringen",
 						gelukteReserveringen);

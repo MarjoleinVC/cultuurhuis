@@ -23,6 +23,7 @@ public class Klant implements Serializable {
 	private String gebruikersnaam;
 	private String paswoord;
 
+
 	public Klant(String vnaam, String fnaam, Adres adres,
 			String gebruikersnaam, String paswoord) {
 		this.vnaam = vnaam;
@@ -40,6 +41,13 @@ public class Klant implements Serializable {
 		this.adres = adres;
 		this.gebruikersnaam = gebruikersnaam;
 		this.paswoord = paswoord;
+	}
+	
+	public Klant(long KlantId, String vnaam, String fnaam, Adres adres) {
+		this.KlantId = KlantId;
+		this.vnaam = vnaam;
+		this.fnaam = fnaam;
+		this.adres = adres;
 	}
 
 	public long getKlantId() {

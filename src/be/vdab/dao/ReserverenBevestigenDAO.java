@@ -46,13 +46,17 @@ public class ReserverenBevestigenDAO extends AbstractDAO {
 									statementInsert.setLong(3,
 											reserveringen.getAantalPlaatsen());
 									statementInsert.executeUpdate();
+									reserveringen.setSuccesReservering(true);
 								} catch (SQLException ex) {
-									throw new DAOException("Problemen met toevoegen van de reservatie in de database");
+									throw new DAOException(
+											"Problemen met toevoegen van de reservatie in de database");
 								}
 							} catch (SQLException ex) {
-								throw new DAOException("Problemen met het updaten van de vrije plaatsen in de database");
+								throw new DAOException(
+										"Problemen met het updaten van de vrije plaatsen in de database");
 							}
 						}
+						reserveringen.setSuccesReservering(false);
 					}
 				}
 				/*
@@ -65,7 +69,8 @@ public class ReserverenBevestigenDAO extends AbstractDAO {
 				reserveringen.setSuccesReservering(true);
 				return reserveringen;
 			} catch (SQLException ex) {
-				throw new DAOException("Problemen met het ophalen van de beschikbaare vrije plaatsen uit de database");
+				throw new DAOException(
+						"Problemen met het ophalen van de beschikbaare vrije plaatsen uit de database");
 			}
 		} catch (SQLException ex) {
 			try {

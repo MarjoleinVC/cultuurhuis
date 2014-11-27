@@ -2,7 +2,7 @@ package be.vdab.servlets;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map.Entry;
 
@@ -50,7 +50,7 @@ public class ReservatiemandjeServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		@SuppressWarnings("unchecked")
-		HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
+		LinkedHashMap<Long, Long> reservatiemandje = (LinkedHashMap<Long, Long>) session
 				.getAttribute("reservatiemandje");
 		List<Reserveringen> reserveringInReservatiemandje = new ArrayList<>();
 		double totaalTeBetalen = 0;
@@ -80,7 +80,7 @@ public class ReservatiemandjeServlet extends HttpServlet {
 				.getParameterValues("verwijderenAangevinkt");
 		if (session != null) {
 			@SuppressWarnings("unchecked")
-			HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
+			LinkedHashMap<Long, Long> reservatiemandje = (LinkedHashMap<Long, Long>) session
 					.getAttribute("reservatiemandje");
 			List<Reserveringen> reserveringInReservatiemandje = new ArrayList<>();
 			double totaalTeBetalen = 0;

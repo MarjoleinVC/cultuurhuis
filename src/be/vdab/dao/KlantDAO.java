@@ -27,8 +27,6 @@ public class KlantDAO extends AbstractDAO {
 	private static final String FIND_KLANT = "select id, voornaam, familienaam, straat, huisnr, postcode, gemeente from klanten where gebruikersnaam=? and paswoord=?";
 	private static final String FIND_EXISTING_GEBRUIKERSNAAM = "select id, voornaam, familienaam, straat, huisnr, postcode, gemeente, gebruikersnaam, paswoord from klanten where gebruikersnaam=?";
 
-	/* TODO Nieuwe klant wordt toegevoegd in database, dus ook gebruikersnaam! */
-
 	private final static Logger logger = Logger.getLogger(KlantDAO.class
 			.getName());
 
@@ -41,11 +39,8 @@ public class KlantDAO extends AbstractDAO {
 			Long id = resultSet.getLong("id");
 			String voornaam = resultSet.getString("voornaam");
 			String familienaam = resultSet.getString("familienaam");
-			/* TODO Column 'gebruikersnaam' not found. */
-			String gebruikersnaam = resultSet.getString("gebruikersnaam");// gebruikersnaam
-			String paswoord = resultSet.getString("paswoord");
-			Klant klant = new Klant(id, voornaam, familienaam, adres,
-					gebruikersnaam, paswoord);
+			/* Een kolom mag maar 1x opgevraagd worden!! */
+			Klant klant = new Klant(id, voornaam, familienaam, adres);
 			return klant;
 		} catch (SQLException ex) {
 			logger.log(Level.SEVERE, "Probleem met database klanten", ex);
@@ -81,8 +76,11 @@ public class KlantDAO extends AbstractDAO {
 			statement.setString(2, paswoord);
 			try (ResultSet resultSet = statement.executeQuery();) {
 				Klant klant = null;
-				if (resultSet.next())
+				if (resultSet.next()) {
 					klant = resultSetRowToKlant(resultSet);
+					klant.setGebruikersnaam(gebruikersnaam);
+					klant.setPaswoord(paswoord);
+				}
 				return klant;
 			}
 		} catch (SQLException ex) {
@@ -92,8 +90,6 @@ public class KlantDAO extends AbstractDAO {
 					"Kan de gebruiker niet vinden in de database", ex);
 		}
 	}
-
-	/* Nieuwe klant wordt niet toegevoegd in MySQL. Webpagina refreshed gewoon */
 
 	public void createKlant(Klant klant) {
 		try (Connection connection = dataSource.getConnection();

@@ -1,7 +1,7 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -51,7 +51,7 @@ public class KlantToevoegenServlet extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest request,
 			HttpServletResponse response) throws ServletException, IOException {
-		Map<String, String> fouten = new HashMap<>();
+		Map<String, String> fouten = new LinkedHashMap<>();
 		String vnaam = null;
 		vnaam = request.getParameter("vnaam");
 		if (vnaam == null || vnaam.isEmpty()) {

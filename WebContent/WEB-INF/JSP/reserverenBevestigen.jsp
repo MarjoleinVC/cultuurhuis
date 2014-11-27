@@ -52,25 +52,30 @@ nieuwe klant klikt op "ik ben nieuw"
 		<h2 class="blauweTekst">Stap 1: Wie ben je?</h2>
 		<c:url value="/reserverenBevestigen.htm" var="reserverenBevestigenURL" />
 		<form action="${reserverenBevestigenURL}" method="post">
-			<label>Gebruikersnaam:<br>
-			<input type="text" id="gebruikersnaam" name="gebruikersnaam"
-				placeholder="uw gebruikersnaam"
-				title="vul hier uw gebruikersnaam in"></label><br> 
-			<label>Paswoord:<br>
-			<input type="password" id="paswoord" name="paswoord"
-				placeholder="uw paswoord" title="vul hier uw paswoord in"></label><br><br> <input
-				type="submit" value="Zoek me op"
-				<c:if test="${not empty klant}">disabled</c:if>>
+			<label>Gebruikersnaam:<br> <input
+				title="vul hier uw gebruikersnaam in"
+				value="${param.gebruikersnaam}" name="gebruikersnaam" autofocus></label><br>
+			<label>Paswoord:<br> <input type="password"
+				title="vul hier uw paswoord in" value="${param.paswoord}"
+				name="paswoord"></label><br> <br> <input type="submit"
+				value="Zoek me op" <c:if test="${not empty klant}">disabled</c:if>>
 		</form>
 		<c:url value="/nieuweKlant.htm" var="nieuweKlantURL" />
 		<form action="${nieuweKlantURL}" method="post">
 			<input type="submit" value="Ik ben nieuw"
 				<c:if test="${not empty klant}">disabled</c:if>>
 		</form>
-		<c:if test="${not empty klant}"><p class="bold">${klant.toString()}</p></c:if>
-		<c:if test="${not empty fout}">${fout}</c:if>
+		<c:if test="${not empty klant}">
+			<p class="bold">${klant.vnaam} ${klant.fnaam}
+				${klant.adres.straat} ${klant.adres.huisNr} ${klant.adres.postcode}
+				${klant.adres.gemeente}</p>
+		</c:if>
+		<c:if test="${not empty fout}">
+			<p class="bold">${fout}</p>
+		</c:if>
 		<h2 class="blauweTekst">Stap 2: Bevestigen</h2>
-		<c:url value="/toevoegen.htm" var="toevoegenReserveringenDbURL" />
+		<c:url value="/overzichtReserveringen.htm"
+			var="toevoegenReserveringenDbURL" />
 		<form action="${toevoegenReserveringenDbURL}" method="post">
 			<input type="submit" value="Bevestigen"
 				<c:if test="${empty klant}">disabled</c:if>>

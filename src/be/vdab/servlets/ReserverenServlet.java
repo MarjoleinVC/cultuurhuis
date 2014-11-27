@@ -1,7 +1,7 @@
 package be.vdab.servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
+import java.util.LinkedHashMap;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletException;
@@ -46,7 +46,7 @@ public class ReserverenServlet extends HttpServlet {
 			HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession(false);
 		@SuppressWarnings("unchecked")
-		HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
+		LinkedHashMap<Long, Long> reservatiemandje = (LinkedHashMap<Long, Long>) session
 				.getAttribute("reservatiemandje");
 		long selectedVoorstellingId = Long.parseLong(request
 				.getParameter("voorstelling"));
@@ -80,10 +80,10 @@ public class ReserverenServlet extends HttpServlet {
 					&& aantalTeReserveren <= voorstelling.getVrijeplaatsen()) {
 				Reserveringen reservering = new Reserveringen(voorstelling,
 						aantalTeReserveren);
-				HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
+				LinkedHashMap<Long, Long> reservatiemandje = (LinkedHashMap<Long, Long>) session
 						.getAttribute("reservatiemandje");
 				if (reservatiemandje == null) {
-					reservatiemandje = new HashMap<Long, Long>();
+					reservatiemandje = new LinkedHashMap<Long, Long>();
 				}
 				reservatiemandje.put(reservering.getVoorstelling()
 						.getVoorstellingId(), reservering.getAantalPlaatsen());
