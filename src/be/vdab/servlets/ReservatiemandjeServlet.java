@@ -58,6 +58,7 @@ public class ReservatiemandjeServlet extends HttpServlet {
 		HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
 				.getAttribute("reservatiemandje");
 		List<Reserveringen> reserveringInReservatiemandje = new ArrayList<>();
+		double totaalTeBetalen = 0;
 		if (reservatiemandje != null) {
 			for (Entry<Long, Long> entry : reservatiemandje.entrySet()) {
 				long voorstellingId = entry.getKey();
@@ -66,7 +67,10 @@ public class ReservatiemandjeServlet extends HttpServlet {
 						voorstellingenDAO.findByPK(voorstellingId),
 						aantalPlaatsen);
 				reserveringInReservatiemandje.add(reservering);
+				totaalTeBetalen += (reservering.getVoorstelling().getPrijs())
+						* (reservering.getAantalPlaatsen());
 			}
+			request.setAttribute("totaalTeBetalen", totaalTeBetalen);
 			request.setAttribute("reserveringenInReservatiemandje",
 					reserveringInReservatiemandje);
 		}
@@ -84,8 +88,9 @@ public class ReservatiemandjeServlet extends HttpServlet {
 			HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
 					.getAttribute("reservatiemandje");
 			List<Reserveringen> reserveringInReservatiemandje = new ArrayList<>();
+			double totaalTeBetalen = 0;
 			if (reservatiemandje != null) {
-				if (!request.getParameter("verwijderAangevinkt").isEmpty()) {
+				if (request.getParameter("verwijderenAangevinkt") != null) {
 					List<Long> toRemove = new ArrayList<>();
 					for (String verwijderenAangevinkt : removeReserveringen) {
 						toRemove.add(Long.parseLong(verwijderenAangevinkt));
@@ -103,7 +108,10 @@ public class ReservatiemandjeServlet extends HttpServlet {
 							voorstellingenDAO.findByPK(voorstellingId),
 							aantalPlaatsen);
 					reserveringInReservatiemandje.add(reservering);
+					totaalTeBetalen += (reservering.getVoorstelling()
+							.getPrijs()) * (reservering.getAantalPlaatsen());
 				}
+				request.setAttribute("totaalTeBetalen", totaalTeBetalen);
 				request.setAttribute("reserveringenInReservatiemandje",
 						reserveringInReservatiemandje);
 			}

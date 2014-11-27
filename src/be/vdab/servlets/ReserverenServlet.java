@@ -87,6 +87,9 @@ public class ReserverenServlet extends HttpServlet {
 						aantalTeReserveren);
 				HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
 						.getAttribute("reservatiemandje");
+				if (reservatiemandje == null){
+					reservatiemandje = new HashMap<Long, Long>();
+				}
 				reservatiemandje.put(reservering.getVoorstelling()
 						.getVoorstellingId(), reservering.getAantalPlaatsen());
 				session.setAttribute("reservatiemandje", reservatiemandje);

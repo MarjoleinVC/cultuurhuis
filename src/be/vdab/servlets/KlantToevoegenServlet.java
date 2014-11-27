@@ -109,16 +109,16 @@ public class KlantToevoegenServlet extends HttpServlet {
 			fouten.put("gebruikersnaam",
 					"De gebruikersnaam komt al voor in de database.");
 		}
-		if (fouten.isEmpty()) {
+		if (!fouten.isEmpty()) {
+			request.setAttribute("fouten", fouten);
+			request.getRequestDispatcher(VIEW).forward(request, response);
+		} else {
 			klantDAO.createKlant(new Klant(vnaam, fnaam, new Adres(straat,
 					huisnr, postcode, gemeente), gebruikersnaam, paswoord2));
 			request.setAttribute("klant",
 					klantDAO.findKlant(gebruikersnaam, paswoord2));
 			response.sendRedirect(String.format(REDIRECT_URL,
 					request.getContextPath()));
-		} else {
-			request.setAttribute("fouten", fouten);
-			request.getRequestDispatcher(VIEW).forward(request, response);
 		}
 	}
 }

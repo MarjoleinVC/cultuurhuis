@@ -55,7 +55,8 @@ nieuwe klant klikt op "ik ben nieuw"
 			<label>Gebruikersnaam:<br>
 			<input type="text" id="gebruikersnaam" name="gebruikersnaam"
 				placeholder="uw gebruikersnaam"
-				title="vul hier uw gebruikersnaam in"></label><br> <label>Paswoord<br>
+				title="vul hier uw gebruikersnaam in"></label><br> 
+			<label>Paswoord:<br>
 			<input type="password" id="paswoord" name="paswoord"
 				placeholder="uw paswoord" title="vul hier uw paswoord in"></label><br><br> <input
 				type="submit" value="Zoek me op"

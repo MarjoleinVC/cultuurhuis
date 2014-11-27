@@ -45,8 +45,7 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 	<article>
 		<!-- Geen required bij <input> want opsomming fouten moet onder formulier weergegeven worden -->
 		<c:url value="/nieuweKlant.htm" var="nieuweKlantURL" />
-		<form action="${contextPath}/reserverenBevestigen.htm" method="post"
-			id="klantToevoegen">
+		<form action="${nieuweKlantURL}" method="post" id="klantToevoegen">
 			<label>Voornaam:<%-- <span>${fouten.vnaam}</span>  --%> <br>
 				<input title="vul hier uw voornaam in" value="${param.vnaam}"
 				name="vnaam" class="kaderBreedte" autofocus>
@@ -66,8 +65,8 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 				title="vul hier uw gemeente in" value="${param.gemeente}"
 				name="gemeente" class="kaderBreedte">
 			</label><br> <br> <label>Gebruikersnaam: <br> <input
-				title="vul hier uw gebruikersnaam in" value="${param.gnaam}"
-				name="gnaam" class="kaderBreedte">
+				title="vul hier uw gebruikersnaam in"
+				value="${param.gebruikersnaam}" name="gnaam" class="kaderBreedte">
 			</label><br> <br> <label>Paswoord: <br> <input
 				type="password" title="vul hier uw paswoord in"
 				value="${param.paswoord}" name="paswoord" class="kaderBreedte">
@@ -75,20 +74,14 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 				type="password" title="vul hier uw paswoord in"
 				value="${param.paswoord2}" name="paswoord2" class="kaderBreedte">
 			</label><br> <br> <input type="submit" value="OK">
-			<c:if test="${not empty fouten}">
-				<ul class="rodeTekst">
-					<li>${fouten.vnaam}<br></li>
-					<li>${fouten.fnaam}<br></li>
-					<li>${fouten.straat}<br></li>
-					<li>${fouten.huisnr}<br></li>
-					<li>${fouten.postcode}<br></li>
-					<li>${fouten.gemeente}<br></li>
-					<li>${fouten.gebruikersnaam}<br></li>
-					<li>${fouten.paswoord}<br></li>
-					<li>${fouten.paswoord2}<br></li>
-				</ul>
-			</c:if>
 		</form>
+		<c:if test="${not empty fouten}">
+			<ol class="rodeTekst">
+				<c:forEach var="fout" items="${fouten}">
+					<li>${fout.value}<br></li>
+				</c:forEach>
+			</ol>
+		</c:if>
 	</article>
 </body>
 </html>

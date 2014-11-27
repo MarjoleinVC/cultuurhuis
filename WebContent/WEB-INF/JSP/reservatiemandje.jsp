@@ -47,20 +47,20 @@
 			<!-- TODO geeft de reserveringen niet weer in het mandje! -->
 			<tbody class="zebra">
 				<c:forEach var="reservering"
-					items="${reservatiemandje.reservering}">
+					items="${reserveringenInReservatiemandje}">
 					<tr>
 						<td><fmt:formatDate value="${reservering.voorstelling.datum}" pattern="dd/MM/yyyy HH:mm"/></td>
 						<td>${reservering.voorstelling.titel}</td>
-						<td>${reservering.voorstelling.uitvoerders}"</td>
+						<td>${reservering.voorstelling.uitvoerders}</td>
 						<td>&euro;${reservering.voorstelling.prijs}</td>
 						<td class="getal">${reservering.aantalPlaatsen}</td>
-						<td><input type="checkbox" id="verwijderenAangevinkt"
+						<td><input type="checkbox" id="verwijderenAangevinkt" name="verwijderenAangevinkt"
 							value="${reservering.voorstelling.voorstellingId}"></td>
 					</tr>
 				</c:forEach>
 			</tbody>
 		</table>
 	</form>
-	<p>Te betalen: &euro;${overzichtReservatiemandje.totaalTeBetalen()}</p>
+	<p>Te betalen: &euro;${totaalTeBetalen}</p>
 </body>
 </html>

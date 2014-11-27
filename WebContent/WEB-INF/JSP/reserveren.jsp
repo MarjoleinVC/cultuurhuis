@@ -51,15 +51,16 @@
 			<dt>${voorstelling.vrijeplaatsen}</dt>
 			<dd class="OpsommingOpmaak">Plaatsen:</dd>
 		</dl>
-		<c:url value="/reservatiemandje.htm" var="reservatiemandjeURL" />
-		<form method="post"
-			action="${reservatiemandjeURL}">
-			<input type="hidden" name="voorstellingId" value="${voorstelling.voorstellingId}}">
-			<input type="number" name="aantalTeReserveren" min="1"
-				max="${voorstelling.vrijeplaatsen}" value="${param.aantalTeReserveren}"
-				required><br><br><input type="submit" value="Reserveren" />
-			<c:if test="${not empty fout}"><div></div></c:if>
+		<c:url value="/reserveren.htm" var="reserverenURL" />
+		<form method="post" action="${reserverenURL}">
+			<input type="hidden" name="voorstelling"
+				value="${voorstelling.voorstellingId}"> <input
+				name="aantalTeReserveren" min="1"
+				max="${voorstelling.vrijeplaatsen}"
+				value="${param.aantalTeReserveren}"><br> <br>
+			<input type="submit" value="Reserveren" />
 		</form>
+		<c:if test="${not empty fout}">${fout}</c:if>
 	</article>
 </body>
 </html>

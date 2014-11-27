@@ -4,7 +4,7 @@
  * Hieronder oplossing van stackoverflow met geregistreerd in web.xml, maar dan start de website niet op.
  * Hoe best oplossen?
  * */
-package be.vdab.entities;
+/*package be.vdab.entities;
 
 import java.sql.Driver;
 import java.sql.DriverManager;
@@ -45,4 +45,4 @@ public class ContextFinalizer implements ServletContextListener {
 			ex.printStackTrace();
 		}
 	}
-}
+}*/
