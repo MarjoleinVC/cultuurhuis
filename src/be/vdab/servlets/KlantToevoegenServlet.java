@@ -34,8 +34,6 @@ public class KlantToevoegenServlet extends HttpServlet {
 	private final transient ReserverenBevestigenDAO reserverenBevestigenDAO = new ReserverenBevestigenDAO();
 	private final transient VoorstellingenDAO voorstellingenDAO = new VoorstellingenDAO();
 
-	/* Nieuwe klant wordt niet toegevoegd in MySQL. Webpagina refreshed gewoon */
-
 	@Resource(name = VoorstellingenDAO.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
 		voorstellingenDAO.setDataSource(dataSource);

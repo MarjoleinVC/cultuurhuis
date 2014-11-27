@@ -27,6 +27,8 @@ public class KlantDAO extends AbstractDAO {
 	private static final String FIND_KLANT = "select id, voornaam, familienaam, straat, huisnr, postcode, gemeente from klanten where gebruikersnaam=? and paswoord=?";
 	private static final String FIND_EXISTING_GEBRUIKERSNAAM = "select id, voornaam, familienaam, straat, huisnr, postcode, gemeente, gebruikersnaam, paswoord from klanten where gebruikersnaam=?";
 
+	/* TODO Nieuwe klant wordt toegevoegd in database, dus ook gebruikersnaam! */
+
 	private final static Logger logger = Logger.getLogger(KlantDAO.class
 			.getName());
 
@@ -40,7 +42,7 @@ public class KlantDAO extends AbstractDAO {
 			String voornaam = resultSet.getString("voornaam");
 			String familienaam = resultSet.getString("familienaam");
 			/* TODO Column 'gebruikersnaam' not found. */
-			String gebruikersnaam = resultSet.getString("gebruikersnaam");//gebruikersnaam
+			String gebruikersnaam = resultSet.getString("gebruikersnaam");// gebruikersnaam
 			String paswoord = resultSet.getString("paswoord");
 			Klant klant = new Klant(id, voornaam, familienaam, adres,
 					gebruikersnaam, paswoord);

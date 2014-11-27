@@ -37,11 +37,6 @@ public class ReservatiemandjeServlet extends HttpServlet {
 	private final transient ReserverenBevestigenDAO reserverenBevestigenDAO = new ReserverenBevestigenDAO();
 	private final transient VoorstellingenDAO voorstellingenDAO = new VoorstellingenDAO();
 
-	/*
-	 * TODO geen reserveringen zichtbaar in reservatiemandje. Volgens mij wordt
-	 * een reservatie niet onthouden?
-	 */
-
 	@Resource(name = VoorstellingenDAO.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
 		voorstellingenDAO.setDataSource(dataSource);

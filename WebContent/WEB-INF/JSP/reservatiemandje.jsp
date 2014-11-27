@@ -44,7 +44,6 @@
 					<th><input type="submit" value="Verwijderen" /></th>
 				</tr>
 			</thead>
-			<!-- TODO geeft de reserveringen niet weer in het mandje! -->
 			<tbody class="zebra">
 				<c:forEach var="reservering"
 					items="${reserveringenInReservatiemandje}">

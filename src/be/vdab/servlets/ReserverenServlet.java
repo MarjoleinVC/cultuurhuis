@@ -33,11 +33,6 @@ public class ReserverenServlet extends HttpServlet {
 	private final transient ReserverenBevestigenDAO reserverenBevestigenDAO = new ReserverenBevestigenDAO();
 	private final transient VoorstellingenDAO voorstellingenDAO = new VoorstellingenDAO();
 
-	/*
-	 * TODO geen reserveringen zichtbaar in reservatiemandje. Volgens mij wordt
-	 * een reservatie niet onthouden?
-	 */
-
 	@Resource(name = VoorstellingenDAO.JNDI_NAME)
 	void setDataSource(DataSource dataSource) {
 		voorstellingenDAO.setDataSource(dataSource);
@@ -87,7 +82,7 @@ public class ReserverenServlet extends HttpServlet {
 						aantalTeReserveren);
 				HashMap<Long, Long> reservatiemandje = (HashMap<Long, Long>) session
 						.getAttribute("reservatiemandje");
-				if (reservatiemandje == null){
+				if (reservatiemandje == null) {
 					reservatiemandje = new HashMap<Long, Long>();
 				}
 				reservatiemandje.put(reservering.getVoorstelling()

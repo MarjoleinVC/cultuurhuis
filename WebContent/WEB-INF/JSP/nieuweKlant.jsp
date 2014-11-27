@@ -46,7 +46,7 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 		<!-- Geen required bij <input> want opsomming fouten moet onder formulier weergegeven worden -->
 		<c:url value="/nieuweKlant.htm" var="nieuweKlantURL" />
 		<form action="${nieuweKlantURL}" method="post" id="klantToevoegen">
-			<label>Voornaam:<%-- <span>${fouten.vnaam}</span>  --%> <br>
+			<label>Voornaam:<br>
 				<input title="vul hier uw voornaam in" value="${param.vnaam}"
 				name="vnaam" class="kaderBreedte" autofocus>
 			</label><br> <br> <label>Familienaam: <br> <input
@@ -66,7 +66,7 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 				name="gemeente" class="kaderBreedte">
 			</label><br> <br> <label>Gebruikersnaam: <br> <input
 				title="vul hier uw gebruikersnaam in"
-				value="${param.gebruikersnaam}" name="gnaam" class="kaderBreedte">
+				value="${param.gebruikersnaam}" name="gebruikersnaam" class="kaderBreedte">
 			</label><br> <br> <label>Paswoord: <br> <input
 				type="password" title="vul hier uw paswoord in"
 				value="${param.paswoord}" name="paswoord" class="kaderBreedte">

@@ -15,7 +15,4 @@
 		<exception-type>be.vdab.dao.DAOException</exception-type>
 		<location>/WEB-INF/JSP/daoexception.jsp</location>
 	</error-page>
-	<!-- <listener>
-		<listener-class>path.to.ContextFinalizer</listener-class>
-	</listener> -->
 </web-app>
