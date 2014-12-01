@@ -46,9 +46,9 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 		<!-- Geen required bij <input> want opsomming fouten moet onder formulier weergegeven worden -->
 		<c:url value="/nieuweKlant.htm" var="nieuweKlantURL" />
 		<form action="${nieuweKlantURL}" method="post" id="klantToevoegen">
-			<label>Voornaam:<br>
-				<input title="vul hier uw voornaam in" value="${param.vnaam}"
-				name="vnaam" class="kaderBreedte" autofocus>
+			<label>Voornaam:<br> <input
+				title="vul hier uw voornaam in" value="${param.vnaam}" name="vnaam"
+				class="kaderBreedte" autofocus>
 			</label><br> <br> <label>Familienaam: <br> <input
 				title="vul hier uw familienaam in" value="${param.fnaam}"
 				name="fnaam" class="kaderBreedte">
@@ -57,16 +57,17 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 				class="kaderBreedte">
 			</label><br> <br> <label>Huisnr.: <br> <input
 				title="vul hier uw huisnr in" value="${param.huisnr}" name="huisnr"
-				class="kaderBreedte">
+				class="kaderBreedte" type="number">
 			</label><br> <br> <label>Postcode: <br> <input
 				title="vul hier uw postcode in" value="${param.postcode}"
-				name="postcode" class="kaderBreedte">
+				name="postcode" class="kaderBreedte" type="number">
 			</label><br> <br> <label>Gemeente: <br> <input
 				title="vul hier uw gemeente in" value="${param.gemeente}"
 				name="gemeente" class="kaderBreedte">
 			</label><br> <br> <label>Gebruikersnaam: <br> <input
 				title="vul hier uw gebruikersnaam in"
-				value="${param.gebruikersnaam}" name="gebruikersnaam" class="kaderBreedte">
+				value="${param.gebruikersnaam}" name="gebruikersnaam"
+				class="kaderBreedte">
 			</label><br> <br> <label>Paswoord: <br> <input
 				type="password" title="vul hier uw paswoord in"
 				value="${param.paswoord}" name="paswoord" class="kaderBreedte">
@@ -75,13 +76,11 @@ mogelijke fouten: lege velden, paswoord != herhaal paswoord, gebruikersnaam best
 				value="${param.paswoord2}" name="paswoord2" class="kaderBreedte">
 			</label><br> <br> <input type="submit" value="OK">
 		</form>
-		<c:if test="${not empty fouten}">
-			<ol class="rodeTekst">
-				<c:forEach var="fout" items="${fouten}">
-					<li>${fout.value}<br></li>
-				</c:forEach>
-			</ol>
-		</c:if>
+		<ol class="rodeTekst">
+			<c:forEach var="fout" items="${fouten}">
+				<li>${fout.value}<br></li>
+			</c:forEach>
+		</ol>
 	</article>
 </body>
 </html>

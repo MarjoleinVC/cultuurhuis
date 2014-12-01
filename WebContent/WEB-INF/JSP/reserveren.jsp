@@ -57,7 +57,7 @@
 				value="${voorstelling.voorstellingId}"> <input
 				name="aantalTeReserveren" min="1"
 				max="${voorstelling.vrijeplaatsen}"
-				value="${param.aantalTeReserveren}"><br> <br>
+				value="${param.aantalTeReserveren}" type="number"><br> <br>
 			<input type="submit" value="Reserveren" />
 		</form>
 		<c:if test="${not empty fout}">${fout}</c:if>

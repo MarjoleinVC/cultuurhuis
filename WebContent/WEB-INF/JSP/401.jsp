@@ -1,4 +1,4 @@
-<!--Fout 404 - onbestaande pagina-->
+<!--Fout 404 - unauthorized pagina-->
 <%@ page contentType="text/html" pageEncoding="UTF-8" session="false"%>
 <%@ taglib prefix='c' uri='http://java.sun.com/jsp/jstl/core'%>
 <%@taglib prefix='fmt' uri='http://java.sun.com/jsp/jstl/fmt'%>
@@ -20,8 +20,8 @@
 			</span>
 		</h1>
 	</header>
-	<h2 class="blauweTekst">Error 404: Not found</h2>
-	<p>De pagina die u zocht bestaat niet.</p>
+	<h2 class="blauweTekst">Error 401: Unauthorized</h2>
+	<p>U beschikt niet over de juiste rechten voor deze pagina.</p>
 	<p>
 		Om terug te keren naar het overzicht van de voorstellingen klik
 		<c:url var="voorstellingenURL" value="/index.htm" />

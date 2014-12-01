@@ -20,8 +20,8 @@
 			</span>
 		</h1>
 	</header>
-	<h2 class="blauweTekst">Error 404: Not found</h2>
-	<p>De pagina die u zocht bestaat niet.</p>
+	<h2 class="blauweTekst">Error 400: Bad request</h2>
+	<p>Er is iets mis gelopen bij het opvragen van de pagina.</p>
 	<p>
 		Om terug te keren naar het overzicht van de voorstellingen klik
 		<c:url var="voorstellingenURL" value="/index.htm" />

@@ -23,7 +23,6 @@ public class Klant implements Serializable {
 	private String gebruikersnaam;
 	private String paswoord;
 
-
 	public Klant(String vnaam, String fnaam, Adres adres,
 			String gebruikersnaam, String paswoord) {
 		this.vnaam = vnaam;
@@ -42,7 +41,7 @@ public class Klant implements Serializable {
 		this.gebruikersnaam = gebruikersnaam;
 		this.paswoord = paswoord;
 	}
-	
+
 	public Klant(long KlantId, String vnaam, String fnaam, Adres adres) {
 		this.KlantId = KlantId;
 		this.vnaam = vnaam;
@@ -63,6 +62,9 @@ public class Klant implements Serializable {
 	}
 
 	public void setVnaam(String vnaam) {
+		if (!Validatie.isStringValid(vnaam)) {
+			throw new IllegalArgumentException();
+		}
 		this.vnaam = vnaam;
 	}
 
@@ -71,6 +73,9 @@ public class Klant implements Serializable {
 	}
 
 	public void setFnaam(String fnaam) {
+		if (!Validatie.isStringValid(fnaam)) {
+			throw new IllegalArgumentException();
+		}
 		this.fnaam = fnaam;
 	}
 

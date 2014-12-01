@@ -32,6 +32,9 @@ public class Adres implements Serializable {
 	}
 
 	public void setStraat(String straat) {
+		if (!Validatie.isStringValid(straat)) {
+			throw new IllegalArgumentException();
+		}
 		this.straat = straat;
 	}
 
@@ -40,6 +43,9 @@ public class Adres implements Serializable {
 	}
 
 	public void setHuisNr(String huisNr) {
+		if (!Validatie.isCijferValid(huisNr)) {
+			throw new IllegalArgumentException();
+		}
 		this.huisNr = huisNr;
 	}
 
@@ -48,6 +54,9 @@ public class Adres implements Serializable {
 	}
 
 	public void setPostcode(String postcode) {
+		if (!Validatie.isCijferValid(postcode)) {
+			throw new IllegalArgumentException();
+		}
 		this.postcode = postcode;
 	}
 
@@ -56,6 +65,9 @@ public class Adres implements Serializable {
 	}
 
 	public void setGemeente(String gemeente) {
+		if (!Validatie.isStringValid(huisNr)) {
+			throw new IllegalArgumentException();
+		}
 		this.gemeente = gemeente;
 	}
 

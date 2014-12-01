@@ -59,16 +59,8 @@ public class ReserverenBevestigenServlet extends HttpServlet {
 		if (klant == null) {
 			request.setAttribute("fout", "Verkeerde gebruikersnaam of paswoord");
 		} else {
-			/*
-			 * TODO als session.setAttribute("klant", klant) wordt in jsp
-			 * "Bevestigen" niet beschikbaar als request.setAttribute("klant",
-			 * klant) wordt klant niet onthouden om te gebruiken in
-			 * OverzichtReserveringenServlet 
-			 * session.setAttribute("klant", klant);
-			 */
 			session.setAttribute("klantId", klant.getKlantId());
 			request.setAttribute("klant", klant);
-			request.getRequestDispatcher(VIEW).forward(request, response);
 		}
 		request.getRequestDispatcher(VIEW).forward(request, response);
 	}

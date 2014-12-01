@@ -63,7 +63,6 @@ public class OverzichtReserveringenServlet extends HttpServlet {
 					voorstellingenDAO.findByPK(voorstellingId), aantalPlaatsen);
 			Reserveringen afgehandeldeReservering = null;
 			try {
-				/* TODO klant.getKlantId() veroorzaakt NullPointerException */
 				afgehandeldeReservering = reserverenBevestigenDAO
 						.confirmReserveringen(afTeHandelenReservatiemandje,
 								klantId);

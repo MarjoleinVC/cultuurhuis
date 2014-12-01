@@ -12,14 +12,14 @@
 </head>
 <body>
 	<header>
-		<h1>
+		<h1 class="blauweTekst">
 			Het Cultuurhuis: bevestigen reservaties <span> <img
 				src="${contextPath}/images/bevestig.png" id="bevestigReservatie"
 				alt="bevestig reservatie" title="Bevestig reservatie" />
 			</span>
 		</h1>
 		<nav class="oneLineMenu">
-			<c:if test="${not empty reservatiemandje}">
+			<%-- <c:if test="${not empty reservatiemandje}"> --%>
 				<c:url var="voorstellingenURL" value="/voorstellingen.htm" />
 				<a href="${voorstellingenURL}">Voorstellingen</a>
 				<%-- <c:url var="reservatiemandjeURL" value="/reservatiemandje.htm" />
@@ -27,10 +27,10 @@
 			<c:url var="reserverenBevestigenURL"
 				value="/reserverenBevestigen.htm" />
 			<a href="${reserverenBevestigenURL}">Bevestig reservatie</a> --%>
-			</c:if>
+			<%-- </c:if> --%>
 		</nav>
 	</header>
-	<h2>Gelukte reserveringen</h2>
+	<h2 class="blauweTekst">Gelukte reserveringen</h2>
 	<table>
 		<thead>
 			<tr class="titels">
@@ -57,7 +57,7 @@
 			</c:forEach>
 		</tbody>
 	</table>
-	<h2>Mislukte reserveringen</h2>
+	<h2 class="blauweTekst">Mislukte reserveringen</h2>
 	<table>
 		<thead>
 			<tr class="titels">
